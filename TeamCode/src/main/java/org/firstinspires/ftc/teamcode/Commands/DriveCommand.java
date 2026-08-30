@@ -9,7 +9,7 @@ public class DriveCommand extends CommandBase {
   private final Drivetrain drive;
   private final GamepadEx gamepad;
 
-  private final double tolerance = 0.1; // Tolerance for joystick input
+  private final double tolerance = 0.1;
 
   public DriveCommand(final Drivetrain drive, final GamepadEx gamepad) {
     this.drive = drive;
@@ -19,8 +19,7 @@ public class DriveCommand extends CommandBase {
 
   @Override
   public void initialize() {
-    // Nothing to do here? For swerve drive we really NEED to do something here. What about for us
-    // then?
+
 
   }
 
@@ -31,14 +30,13 @@ public class DriveCommand extends CommandBase {
         || !Utils.isWithinTolerance(0, gamepad.getRightX(), tolerance)) {
       drive.driveFieldCentric(gamepad);
     } else {
-      drive.stopMotors(); // Keep driving? Or do a cartwheel? So many options! What should we do
-      // here?
+      drive.stopMotors();
+
     }
   }
 
   @Override
   public void end(final boolean interrupted) {
-    // I think we should keep driving into the wall, what do you think?
     if (interrupted || isFinished()) {
       drive.stopMotors();
     }
@@ -46,7 +44,6 @@ public class DriveCommand extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    return false; // What should we return here? Should this command always run? Or should it stop
-    // when the gamepad is released?
+    return false; 
   }
 }
