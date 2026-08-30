@@ -30,13 +30,13 @@ public class Drivetrain extends SubsystemBase {
 
   private final Telemetry telemetry;
 
-  private double fieldHeadingOffset = 0.0; // in radians
+  private double fieldHeadingOffset = 0.0;
 
   private final HardwareMap hwMap;
 
   private MecanumDrive drive = null;
 
-  // Make sure your ID's match your configuration
+
   public Drivetrain(
       final HardwareMap hwMap,
       final Telemetry telemetry,
@@ -51,24 +51,20 @@ public class Drivetrain extends SubsystemBase {
     frontRightMotor = new Motor(hwMap, Constants.DriveConstants.FRONT_RIGHT_MOTOR_ID);
     backRightMotor = new Motor(hwMap, Constants.DriveConstants.BACK_RIGHT_MOTOR_ID);
 
-    frontLeftMotor.setInverted(false); // Invert this motor!
-    backLeftMotor.setInverted(false); // Invert this motor!
+    frontLeftMotor.setInverted(false);
+    backLeftMotor.setInverted(false);
 
     frontLeftMotor.setRunMode(
         Motor.RunMode
-            .VelocityControl); // Set the run mode for the motors! Read the docs if you don't know
-    // what this is or what to do here!
+            .VelocityControl);
     frontRightMotor.setRunMode(Motor.RunMode.VelocityControl);
     backLeftMotor.setRunMode(Motor.RunMode.VelocityControl);
     backRightMotor.setRunMode(Motor.RunMode.VelocityControl);
 
-    // Retrieve the IMU from the hardware map
-    revIMU = new RevIMU(hwMap, Constants.DriveConstants.IMU_ID); // Constants.DriveConstants.IMU_ID
+    revIMU = new RevIMU(hwMap, Constants.DriveConstants.IMU_ID);
 
-    revIMU.init(); // FIXME: The orientation is very likely wrong. Needs tested.
+    revIMU.init();
 
-    /* Old parameters settings */
-    // Adjust the orientation parameters to match your robot
     final IMU.Parameters parameters =
         new IMU.Parameters(
             new RevHubOrientationOnRobot(
@@ -77,7 +73,7 @@ public class Drivetrain extends SubsystemBase {
 
     drive =
         new MecanumDrive(
-            frontLeftMotor, frontRightMotor, backLeftMotor, backRightMotor); // Read the docs
+            frontLeftMotor, frontRightMotor, backLeftMotor, backRightMotor);
     if (gameMode == RobotContainer.gameMode.Auto) {
       follower = PedroConstants.createFollower(hwMap);
       telemetry.addData("Follower: ", "auto");
