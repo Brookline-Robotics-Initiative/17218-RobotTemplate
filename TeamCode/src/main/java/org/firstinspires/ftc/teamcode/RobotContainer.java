@@ -80,7 +80,7 @@ public class RobotContainer {
     configureButtonBindings();
   }
 
-  public void configureAuto() { // Note that I'm still working on this. It does not work yet.
+  public void configureAuto() { 
     currentGameMode = gameMode.Auto;
     initializeSubsystems();
     registerNamedCommands();
