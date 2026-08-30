@@ -125,30 +125,19 @@ public class RobotContainer {
   }
 
   public void run() {
-    // telemetry`
-    // telemetry.addData("Currently shooting", outtake.getPower());
-    //    telemetry.update();
 
     if (currentGameMode == gameMode.TeleOp) {
       gamepad1.readButtons();
       gamepad2.readButtons();
     }
+
     if (currentGameMode == gameMode.Auto) {
-      //      telemetry.addData("Pos x", autoDrive.getFollower().getPose().getX());
-      //      telemetry.addData("Pos y", autoDrive.getFollower().getPose().getY());
-      //      telemetry.addData("Heading: ", autoDrive.getFollower().getPose().getHeading());
+      /* FOR PEDROPATHING TUNING:
+            telemetry.addData("Pos x", autoDrive.getFollower().getPose().getX());
+            telemetry.addData("Pos y", autoDrive.getFollower().getPose().getY());
+            telemetry.addData("Heading: ", autoDrive.getFollower().getPose().getHeading());
+      */
     }
-    //    if (currentGameMode == gameMode.Auto) {
-    //      dashboardPoseTracker.update();
-    //      Drawing.drawPoseHistory(dashboardPoseTracker, "#4CAF50");
-    //      Drawing.drawRobot(robot.follower.getPose(), "#4CAF50");
-    //      Drawing.sendPacket();
-    //
-    //      // DO NOT REMOVE! Removing this will return stale data since bulk caching is on Manual
-    // mode
-    //      // Also only clearing the control hub to decrease loop times
-    //      // This means if we start reading both hubs (which we aren't) we need to clear both
-    //      robot.ControlHub.clearBulkCache();
-    //    }
+
   }
 }
