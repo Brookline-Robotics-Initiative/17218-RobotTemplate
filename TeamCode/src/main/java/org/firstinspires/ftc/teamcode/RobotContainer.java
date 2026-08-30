@@ -13,6 +13,7 @@ import com.seattlesolvers.solverslib.gamepad.GamepadEx;
 import com.seattlesolvers.solverslib.gamepad.GamepadKeys;
 import java.io.IOException;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.Commands.AutoCommands.AutoChooser;
 import org.firstinspires.ftc.teamcode.Commands.DriveCommand;
 import org.firstinspires.ftc.teamcode.Subsystems.Drivetrain;
 
@@ -37,7 +38,8 @@ public class RobotContainer {
   private gameMode currentGameMode = null;
 
   public enum AutoMode { // Enum of all valid autonomous modes
-    ExampleAuto;
+    ExampleAuto,
+    DoNothingAuto;
   }
 
   private AutoMode currentAuto;
@@ -89,7 +91,7 @@ public class RobotContainer {
 
   private void configureButtonBindings() {
     // Gamepad 1 buttons
-      // Gamepad 2 buttons
+    // Gamepad 2 buttons
 
   }
 
@@ -97,23 +99,16 @@ public class RobotContainer {
     telemetry.addData("Starting Auto Mode", selectedAutoMode);
     telemetry.update();
 
-/* try {
+    try {
       if (selectedAutoMode == AutoMode.DoNothingAuto) {
         CommandScheduler.getInstance().schedule(new InstantCommand());
-      } else if (selectedAutoMode == AutoMode.reg) {
-        CommandScheduler.getInstance().schedule(new reg(autoDrive, hardwareMap));
-      } else if (selectedAutoMode == AutoMode.SampleAuto) {
-        CommandScheduler.getInstance().schedule(new SampleAuto (parameters));
-      } else {
-        telemetry.addLine("No auto was selected! There was likely an error.");
-        telemetry.update();
       }
     } catch (final IOException error) {
       telemetry.addLine("A critical IOException error has occurred. Doing nothing. ");
       telemetry.addLine(error.toString());
       telemetry.update();
       CommandScheduler.getInstance().schedule(new InstantCommand());
-    }*/
+    }
   }
 
   private void registerNamedCommands() {
