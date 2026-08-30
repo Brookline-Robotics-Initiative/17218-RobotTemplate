@@ -8,9 +8,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.seattlesolvers.solverslib.command.CommandOpMode;
 import com.seattlesolvers.solverslib.command.CommandScheduler;
 import com.seattlesolvers.solverslib.command.InstantCommand;
-import com.seattlesolvers.solverslib.command.button.GamepadButton;
 import com.seattlesolvers.solverslib.gamepad.GamepadEx;
-import com.seattlesolvers.solverslib.gamepad.GamepadKeys;
 import java.io.IOException;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Commands.AutoCommands.AutoChooser;
@@ -66,8 +64,7 @@ public class RobotContainer {
     drive = new Drivetrain(hardwareMap, telemetry, currentGameMode, pinpoint);
     autoDrive = new Drivetrain(hardwareMap, telemetry, currentGameMode, pinpoint);
     // Register subsystems with scheduler
-    CommandScheduler.getInstance()
-        .registerSubsystem(drive, autoDrive);
+    CommandScheduler.getInstance().registerSubsystem(drive, autoDrive);
   }
 
   public void configureTeleOp() {
@@ -114,8 +111,8 @@ public class RobotContainer {
   private void registerNamedCommands() {
 
     // Register  commands
-    //NamedCommands.registerCommand(
-       // "IntakeOn", new InstantCommand(() -> intake.intake()), "Turn intake on (intake mode)");
+    // NamedCommands.registerCommand(
+    // "IntakeOn", new InstantCommand(() -> intake.intake()), "Turn intake on (intake mode)");
     NamedCommands.listAllCommands(telemetry);
   }
 
@@ -133,6 +130,5 @@ public class RobotContainer {
             telemetry.addData("Heading: ", autoDrive.getFollower().getPose().getHeading());
       */
     }
-
   }
 }
