@@ -1,14 +1,15 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.pedropathing.ftc.localization.constants.PinpointConstants;
-import com.pedropathing.ftc.localization.localizers.PinpointLocalizer;
-import com.pedropathingplus.pathing.NamedCommands;
+import com.pedropathing.revhub.localizers.PinpointConfig;
+import com.pedropathing.revhub.localizers.PinpointLocalizer;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.seattlesolvers.solverslib.command.CommandOpMode;
 import com.seattlesolvers.solverslib.command.CommandScheduler;
 import com.seattlesolvers.solverslib.command.InstantCommand;
 import com.seattlesolvers.solverslib.gamepad.GamepadEx;
+import com.turtletracerlib.pathing.NamedCommands;
+
 import java.io.IOException;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Commands.AutoCommands.AutoChooser;
@@ -60,9 +61,9 @@ public class RobotContainer {
   }
 
   public void initializeSubsystems() {
-    pinpoint = new PinpointLocalizer(hardwareMap, new PinpointConstants());
-    drive = new Drivetrain(hardwareMap, telemetry, currentGameMode, pinpoint);
-    autoDrive = new Drivetrain(hardwareMap, telemetry, currentGameMode, pinpoint);
+//    pinpoint = new PinpointLocalizer(hardwareMap, new PinpointConfig()); FIXME: This isn't being implemented
+    drive = new Drivetrain(hardwareMap, telemetry, currentGameMode);
+    autoDrive = new Drivetrain(hardwareMap, telemetry, currentGameMode);
     // Register subsystems with scheduler
     CommandScheduler.getInstance().registerSubsystem(drive, autoDrive);
   }
@@ -99,8 +100,10 @@ public class RobotContainer {
     try {
       if (selectedAutoMode == AutoMode.DoNothingAuto) {
         CommandScheduler.getInstance().schedule(new InstantCommand());
+      } else if (Math.random() > 0.5) {
+        System.out.println("FIXME: Update this part");
       }
-    } catch (final IOException error) {
+    } catch (final Error error) {
       telemetry.addLine("A critical IOException error has occurred. Doing nothing. ");
       telemetry.addLine(error.toString());
       telemetry.update();

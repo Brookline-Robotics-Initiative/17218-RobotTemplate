@@ -1,7 +1,9 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
 
+import static org.firstinspires.ftc.teamcode.pedroPathing.Constants.createFollower;
+
 import com.pedropathing.follower.Follower;
-import com.pedropathing.ftc.localization.localizers.PinpointLocalizer;
+import com.pedropathing.revhub.localizers.PinpointLocalizer;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
@@ -13,7 +15,6 @@ import com.seattlesolvers.solverslib.hardware.motors.Motor;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.RobotContainer;
-import org.firstinspires.ftc.teamcode.pedroPathing.PedroConstants;
 
 public class Drivetrain extends SubsystemBase {
   // Declare our motors
@@ -25,8 +26,6 @@ public class Drivetrain extends SubsystemBase {
   private final Follower follower;
 
   private final RevIMU revIMU;
-
-  private final PinpointLocalizer pinpoint;
 
   private final Telemetry telemetry;
 
@@ -40,11 +39,9 @@ public class Drivetrain extends SubsystemBase {
   public Drivetrain(
       final HardwareMap hwMap,
       final Telemetry telemetry,
-      final RobotContainer.gameMode gameMode,
-      final PinpointLocalizer pinpoint) {
+      final RobotContainer.gameMode gameMode) {
     this.hwMap = hwMap;
     this.telemetry = telemetry;
-    this.pinpoint = pinpoint;
 
     frontLeftMotor = new Motor(hwMap, Constants.DriveConstants.FRONT_LEFT_MOTOR_ID);
     backLeftMotor = new Motor(hwMap, Constants.DriveConstants.BACK_LEFT_MOTOR_ID);
@@ -75,7 +72,7 @@ public class Drivetrain extends SubsystemBase {
         new MecanumDrive(
             frontLeftMotor, frontRightMotor, backLeftMotor, backRightMotor);
     if (gameMode == RobotContainer.gameMode.Auto) {
-      follower = PedroConstants.createFollower(hwMap);
+      follower = createFollower(hwMap);
       telemetry.addData("Follower: ", "auto");
     } else {
       follower = null;

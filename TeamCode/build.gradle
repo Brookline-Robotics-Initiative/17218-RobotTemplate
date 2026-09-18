@@ -77,11 +77,10 @@ dependencies {
     implementation "com.bylazar:fullpanels:1.0.12" // Panels Dashboard
 
     // Pedro Pathing
-    implementation 'com.pedropathing:rev:3.0.0'
-    implementation 'com.pedropathing:telemetry:1.0.0'
+    implementation 'com.pedropathing:revhub:3.0.0'
     implementation 'com.pedropathing:tuning:1.0.0' // AutoTune (see Tuning.java)
 
-    implementation 'com.github.Mallen220:TurtleTracer:3.0.0'
+    implementation 'com.github.Mallen220:TurtleTracerLib:3.0.0'
 
     // Panels Dashboard
     implementation "com.bylazar:fullpanels:1.0.12"
