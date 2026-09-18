@@ -3,7 +3,6 @@ package org.firstinspires.ftc.teamcode.Subsystems;
 import static org.firstinspires.ftc.teamcode.pedroPathing.Constants.createFollower;
 
 import com.pedropathing.follower.Follower;
-import com.pedropathing.revhub.localizers.PinpointLocalizer;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
@@ -35,11 +34,8 @@ public class Drivetrain extends SubsystemBase {
 
   private MecanumDrive drive = null;
 
-
   public Drivetrain(
-      final HardwareMap hwMap,
-      final Telemetry telemetry,
-      final RobotContainer.gameMode gameMode) {
+      final HardwareMap hwMap, final Telemetry telemetry, final RobotContainer.gameMode gameMode) {
     this.hwMap = hwMap;
     this.telemetry = telemetry;
 
@@ -51,9 +47,7 @@ public class Drivetrain extends SubsystemBase {
     frontLeftMotor.setInverted(false);
     backLeftMotor.setInverted(false);
 
-    frontLeftMotor.setRunMode(
-        Motor.RunMode
-            .VelocityControl);
+    frontLeftMotor.setRunMode(Motor.RunMode.VelocityControl);
     frontRightMotor.setRunMode(Motor.RunMode.VelocityControl);
     backLeftMotor.setRunMode(Motor.RunMode.VelocityControl);
     backRightMotor.setRunMode(Motor.RunMode.VelocityControl);
@@ -68,9 +62,7 @@ public class Drivetrain extends SubsystemBase {
                 RevHubOrientationOnRobot.LogoFacingDirection.UP,
                 RevHubOrientationOnRobot.UsbFacingDirection.LEFT));
 
-    drive =
-        new MecanumDrive(
-            frontLeftMotor, frontRightMotor, backLeftMotor, backRightMotor);
+    drive = new MecanumDrive(frontLeftMotor, frontRightMotor, backLeftMotor, backRightMotor);
     if (gameMode == RobotContainer.gameMode.Auto) {
       follower = createFollower(hwMap);
       telemetry.addData("Follower: ", "auto");

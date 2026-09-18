@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.pedropathing.revhub.localizers.PinpointConfig;
 import com.pedropathing.revhub.localizers.PinpointLocalizer;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -9,8 +8,6 @@ import com.seattlesolvers.solverslib.command.CommandScheduler;
 import com.seattlesolvers.solverslib.command.InstantCommand;
 import com.seattlesolvers.solverslib.gamepad.GamepadEx;
 import com.turtletracerlib.pathing.NamedCommands;
-
-import java.io.IOException;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Commands.AutoCommands.AutoChooser;
 import org.firstinspires.ftc.teamcode.Commands.DriveCommand;
@@ -61,7 +58,8 @@ public class RobotContainer {
   }
 
   public void initializeSubsystems() {
-//    pinpoint = new PinpointLocalizer(hardwareMap, new PinpointConfig()); FIXME: This isn't being implemented
+    //    pinpoint = new PinpointLocalizer(hardwareMap, new PinpointConfig()); FIXME: This isn't
+    // being implemented
     drive = new Drivetrain(hardwareMap, telemetry, currentGameMode);
     autoDrive = new Drivetrain(hardwareMap, telemetry, currentGameMode);
     // Register subsystems with scheduler
@@ -78,7 +76,7 @@ public class RobotContainer {
     configureButtonBindings();
   }
 
-  public void configureAuto() { 
+  public void configureAuto() {
     currentGameMode = gameMode.Auto;
     initializeSubsystems();
     registerNamedCommands();
