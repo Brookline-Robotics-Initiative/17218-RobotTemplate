@@ -74,7 +74,6 @@ dependencies {
     compileOnly 'org.solverslib:pedroPathing:0.3.6' // pedroPathing
 
     implementation "com.acmerobotics.dashboard:dashboard:0.5.1" // FTC Dashboard
-    implementation "com.bylazar:fullpanels:1.0.12" // Panels Dashboard
 
     // Pedro Pathing
     implementation 'com.pedropathing:revhub:3.0.0'
@@ -87,7 +86,7 @@ dependencies {
     implementation "com.bylazar:limelightproxy:1.0.4"
 
     //Sloth
-    implementation("dev.frozenmilk.sinister:Sloth:0.3.0")
+    implementation("dev.frozenmilk.sinister:Sloth:0.3.2")
 }
 
 spotless {
