@@ -6,17 +6,23 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.seattlesolvers.solverslib.command.CommandOpMode;
 import com.seattlesolvers.solverslib.command.CommandScheduler;
 import com.seattlesolvers.solverslib.command.InstantCommand;
+import com.seattlesolvers.solverslib.command.button.GamepadButton;
 import com.seattlesolvers.solverslib.gamepad.GamepadEx;
+import com.seattlesolvers.solverslib.gamepad.GamepadKeys;
 import com.turtletracerlib.pathing.NamedCommands;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Commands.AutoCommands.AutoChooser;
 import org.firstinspires.ftc.teamcode.Commands.DriveCommand;
+import org.firstinspires.ftc.teamcode.Commands.OuttakeCommand;
+import org.firstinspires.ftc.teamcode.Commands.ResetOuttakeCommand;
 import org.firstinspires.ftc.teamcode.Subsystems.Drivetrain;
+import org.firstinspires.ftc.teamcode.Subsystems.Outtake;
 
 public class RobotContainer {
   // Subsystems
   private Drivetrain drive;
   private Drivetrain autoDrive;
+  private Outtake outtake;
   private PinpointLocalizer pinpoint;
 
   // Dependencies
@@ -62,6 +68,7 @@ public class RobotContainer {
     // being implemented
     drive = new Drivetrain(hardwareMap, telemetry, currentGameMode);
     autoDrive = new Drivetrain(hardwareMap, telemetry, currentGameMode);
+    outtake = new Outtake(hardwareMap);
     // Register subsystems with scheduler
     CommandScheduler.getInstance().registerSubsystem(drive, autoDrive);
   }
@@ -88,6 +95,8 @@ public class RobotContainer {
   private void configureButtonBindings() {
     // Gamepad 1 buttons
     // Gamepad 2 buttons
+      new GamepadButton(gamepad2, GamepadKeys.Button.A).whenPressed(new OuttakeCommand(outtake));
+      new GamepadButton(gamepad2, GamepadKeys.Button.B).whenPressed(new ResetOuttakeCommand(outtake));
 
   }
 
